@@ -1,0 +1,46 @@
+.App {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+  width: 40%;
+  border: 2px solid black;
+}
+
+h1 {
+  margin: 4%;
+  margin-left: 15%;
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 8%;
+}
+
+thead {
+  border-bottom: 2px solid black;
+}
+
+.btn {
+  display: flex;
+  justify-content: right;
+  text-align: right;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+  margin-left: 910%;
+}
