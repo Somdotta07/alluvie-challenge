@@ -4,6 +4,9 @@ import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 const Home = () => {
   const [user, setUser] = useState([]);
+  const [name, setName] = useState([]);
+  const [surname, setSurName] = useState([]);
+  const [email, setEmail] = useState([]);
 
   useEffect(() => {
     axios
@@ -16,6 +19,18 @@ const Home = () => {
         console.log(err);
       });
   }, []);
+
+  const handleUpdate = async () => {
+    await axios.put('http://localhost:8000/api/user/self', {
+      name: 'hello',
+      surname:'world'
+    })
+    .then((response) => {
+      setUser(response.data);
+      console.log(response.data)
+      });
+         
+  };
 
   return (
     <div className="container">
@@ -32,6 +47,8 @@ const Home = () => {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border  py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                   type="text"
                   placeholder={data.name}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 ></input>
               </div>
               <div className="w-full md:w-1/2 px-3">
@@ -42,7 +59,9 @@ const Home = () => {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-last-name"
                   type="text"
+                  value={surname}
                   placeholder={data.surname}
+                  onChange={(e) => setSurName(e.target.value)}
                 />
               </div>
             </div>
@@ -55,7 +74,9 @@ const Home = () => {
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-password"
                   type="email"
+                  value={email}
                   placeholder={data.email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
             </div>
@@ -105,6 +126,7 @@ const Home = () => {
               <button
                 type="submit"
                 className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                onClick={handleUpdate}
               >
                 Save
               </button>

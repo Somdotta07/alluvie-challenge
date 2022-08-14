@@ -21,17 +21,16 @@ const users = [
 ];
 
 app.use(cors());
-app.use(express.json())
 app.get("/api/user/self", (req, res) => {
   res.send(users);
 });
 
 app.put("/api/user/self", (req, res) => {
-//   const queryParams = req.body;
-    console.log(req.body)
+//   const queryParams = req.query;
 //    res.json({
 //     queryParams
 //   });
+        res.send('test25');
 });
 
 const port = process.env.PORT || 8000;
