@@ -4,9 +4,11 @@ import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 
 const Home = () => {
   const [user, setUser] = useState([]);
-  const [name, setName] = useState([]);
-  const [surname, setSurName] = useState([]);
-  const [email, setEmail] = useState([]);
+  const [name, setName] = useState("");
+  const [surname, setSurName] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(null);
+  const [disable, setDisable] = useState(false);
 
   useEffect(() => {
     axios
@@ -20,16 +22,38 @@ const Home = () => {
       });
   }, []);
 
-  const handleUpdate = async () => {
-    await axios.put('http://localhost:8000/api/user/self', {
-      name: 'hello',
-      surname:'world'
-    })
-    .then((response) => {
-      setUser(response.data);
-      console.log(response.data)
-      });
-         
+  const handlename = (e) => {
+    const getUsername = e.target.value;
+    setName(getUsername);
+  };
+
+  const handlesurname = (e) => {
+    const getsurName = e.target.value;
+    setSurName(getsurName);
+  };
+  const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
+  const handleemail = (e) => {
+    if (!isValidEmail(e.target.value)) {
+      setError("Email is invalid");
+    } else {
+      setError(null);
+    }
+
+    setEmail(e.target.value);
+  };
+
+
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    console.log(`Get Username ${name} ${surname} and ${email}`);
+    setDisable(true);
+    const object = { username: name, userSurname: surname, useremail: email };
+    const req = axios.put("http://localhost:8000/api/user/self", { object });
+    console.log(req);
   };
 
   return (
@@ -44,11 +68,11 @@ const Home = () => {
                   First Name
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border  py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                  className="appearance-none block w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   type="text"
+                  onChange={(e) => handlename(e)}
                   placeholder={data.name}
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
                 ></input>
               </div>
               <div className="w-full md:w-1/2 px-3">
@@ -56,12 +80,12 @@ const Home = () => {
                   Last Name
                 </label>
                 <input
-                  className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                  className="appearance-none block w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   id="grid-last-name"
                   type="text"
                   value={surname}
                   placeholder={data.surname}
-                  onChange={(e) => setSurName(e.target.value)}
+                  onChange={(e) => handlesurname(e)}
                 />
               </div>
             </div>
@@ -72,12 +96,12 @@ const Home = () => {
                 </label>
                 <input
                   className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                  id="grid-password"
                   type="email"
                   value={email}
+                  onChange={handleemail}
                   placeholder={data.email}
-                  onChange={(e) => setEmail(e.target.value)}
                 />
+                {error && <h2 style={{ color: "red" }}>{error}</h2>}
               </div>
             </div>
 
@@ -124,8 +148,9 @@ const Home = () => {
             </div>
             <div className="btn">
               <button
-                type="submit"
-                className=" text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                disabled={disable}
+                type="button"
+                className=""
                 onClick={handleUpdate}
               >
                 Save
