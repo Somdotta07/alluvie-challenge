@@ -9,6 +9,8 @@ While creating this form, you are allowed to use:
 You can assume that the backend is already set up and you can make requests to receive user 
 information. Your endpoint will be “/api/user/self/, which accepts GET and PUT requests. 
 Please hardcode the following data as user data for the GET request:
+
+`
 {
  "name": "Test",
  "surname": "User",
@@ -24,6 +26,7 @@ Please hardcode the following data as user data for the GET request:
  }
  },
 }
+`
 For updating the user information, you would need to make a PUT request with the user 
 document in the format as above in JSON.
 Technical requirements:
