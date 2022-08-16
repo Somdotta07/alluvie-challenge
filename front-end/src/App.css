@@ -26,6 +26,7 @@ h1 {
 
 thead {
   border-bottom: 2px solid black;
+  width: auto;
 }
 
 .btn {

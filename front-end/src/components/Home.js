@@ -7,6 +7,7 @@ const Home = () => {
   const [name, setName] = useState("");
   const [surname, setSurName] = useState("");
   const [email, setEmail] = useState("");
+  // const [notification, setNotification] = useState(false)
   const [error, setError] = useState(null);
   const [disable, setDisable] = useState(false);
 
@@ -45,15 +46,38 @@ const Home = () => {
     setEmail(e.target.value);
   };
 
-
+  // const handleNotification = () => {
+  //   if (notification) {
+  //     setNotification(notification)
+  //   }
+  // }
 
   const handleUpdate = (e) => {
     e.preventDefault();
     console.log(`Get Username ${name} ${surname} and ${email}`);
     setDisable(true);
-    const object = { username: name, userSurname: surname, useremail: email };
-    const req = axios.put("http://localhost:8000/api/user/self", { object });
-    console.log(req);
+    const object = {
+      name: {name},
+      surname: {surname},
+      email: {email},
+      communications: {
+        email: {
+          email: {email},
+          notifications: true,
+        },
+        telegram: {
+          chat_id: 1111,
+          notifications: false,
+        },
+      },
+    }
+
+
+
+    const req = axios.put("http://localhost:8000/api/user/self",  object )
+      .then(response => setUser(response.data.json));
+    console.log(req.json);
+  
   };
 
   return (

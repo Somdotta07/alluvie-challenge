@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+### Coding challenge 
+Your task is to create a user profile page with editing functionality. You need to use React 
+framework and create a Component, which produces the following display:
+While creating this form, you are allowed to use:
+1) Base HTML and CSS
+2) Base React components
+3) Mantine Framework: https://mantine.dev/
+4) Tailwind CSS framework: https://tailwindcss.com/
+You can assume that the backend is already set up and you can make requests to receive user 
+information. Your endpoint will be “/api/user/self/, which accepts GET and PUT requests. 
+Please hardcode the following data as user data for the GET request:
+{
+ "name": "Test",
+ "surname": "User",
+ "email": "test@user.com",
+ "communications": {
+ "email": {
+ "email": "test@user.com",
+ "notifications": true
+ },
+ "telegram": {
+ "chat_id": 1111,
+ "notifications": false
+ }
+ },
+}
+For updating the user information, you would need to make a PUT request with the user 
+document in the format as above in JSON.
+Technical requirements:
+1) Names and email are text fields, for the active text field, border changes color
+2) Email field should have validation to check if input is indeed email
+3) Communication channels should list arbitrary number of channels as in “communications” 
+field of the user document
+4) Green tick and Red cross are representing the boolean of the corresponding channel. Then 
+should be clickable and change to the opposite symbol. In addition, user document stored in 
+memory should also change.
+5) Save button should also track the if user made any changes - if no changes have been made, 
+the button should be gray color and shouldn’t be clickable.
+6) On click on the “Save” button, your application should make a PUT request with updated user 
+document in the database. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Solution 
 
-## Available Scripts
+![image](https://user-images.githubusercontent.com/84907743/184948095-99c3fb21-acb5-42aa-9780-1d59bd124909.png)
 
-In the project directory, you can run:
+✔ Names and email are text fields, for the active text field, border changes color
+✔ Email field should have validation to check if input is indeed email
+✔ 2 communication channels
+✔ Save button should also track the if user made any changes - if no changes have been made, 
+the button should be gray color and shouldn’t be clickable.
+!! Not able to complete "On click on the “Save” button, your application should make a PUT request with updated user 
+document in the database. "
+✔  Used Tailwind CSS and base React Component
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

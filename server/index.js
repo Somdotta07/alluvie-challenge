@@ -29,8 +29,8 @@ app.put("/api/user/self", (req, res) => {
 //   const queryParams = req.query;
 //    res.json({
 //     queryParams
-//   });
-        res.send('test25');
+// //   });
+//         res.send('test25');
 });
 
 const port = process.env.PORT || 8000;
